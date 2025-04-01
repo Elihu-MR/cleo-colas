@@ -1,0 +1,14 @@
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.AssemblyInfoInputs.cache
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.AssemblyInfo.cs
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.csproj.CoreCompileInputs.cache
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\bin\Debug\net9.0\colas.exe
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\bin\Debug\net9.0\colas.deps.json
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\bin\Debug\net9.0\colas.runtimeconfig.json
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\bin\Debug\net9.0\colas.dll
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\bin\Debug\net9.0\colas.pdb
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.dll
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\refint\colas.dll
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.pdb
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\colas.genruntimeconfig.cache
+C:\Users\elihu\OneDrive\Escritorio\estructuras de datos\colas-practica\colas\obj\Debug\net9.0\ref\colas.dll
