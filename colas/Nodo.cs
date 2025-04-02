@@ -6,7 +6,6 @@ public class Nodo{
     public Nodo Siguiente {get; set;}
 
     
-
     public Nodo(object valor1, object valor2){
         Valor1 = valor1;
         Valor2 = valor2;

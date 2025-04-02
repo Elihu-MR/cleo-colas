@@ -1,7 +1,6 @@
 namespace colas;
 public class cola{ // clase para enlazar nodos
     public Nodo primero;
-    public string tipo;
     public int contador;
 
     public cola(){
@@ -23,7 +22,7 @@ public class cola{ // clase para enlazar nodos
         contador++;
     }
 
-    public void agregarAlFinalCaja(object valor1, object valor2, object caja){ // Agregar al Final
+    public void agregarAlFinalCaja(object valor1, object valor2, object caja){
         Nodo nuevoNodo = new Nodo (valor1, valor2, caja);
         if (primero == null){
             primero = nuevoNodo;
@@ -78,18 +77,6 @@ public class cola{ // clase para enlazar nodos
         printxy(x, y+=2, $"Numero Asignado: {primero.Valor2}");
     }
 
-// Buscar Por Valor
-    public bool buscarPorValor(object valor){
-        Nodo actual = primero;
-        while (actual != null){
-            if (actual.Valor1.Equals(valor)){
-                return true;
-            }
-            actual = actual.Siguiente;
-        }
-        return false;
-    }
-
 
 public int enlistar(int x, int y){
 Nodo actual = primero;
@@ -130,7 +117,6 @@ int disponibles = 0;
     return disponibles;
 }
 
- // Muestra la ciudad y muestra los contenedores especificando sus posiciones y su codigo y empresa
 public int enlistarDisponibles(int x, int y, cola cola){
 Nodo actual = primero;
 Nodo actual_cola = cola.primero;

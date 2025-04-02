@@ -1,4 +1,4 @@
-﻿// Fecha 31/3/2025
+﻿// Fecha 1/4/2025
 
 // Equipo:
 // Meza Osuna Juan Manuel
@@ -49,10 +49,9 @@ public static void menu(){
     bool repetir;
     int y = 0;
 
-    /*
     Console.BackgroundColor = ConsoleColor.White;
     Console.ForegroundColor = ConsoleColor.Black;
-    */
+
     Console.Clear();
 
     string[] tabla_menu = new string[] {
