@@ -236,13 +236,24 @@ public static void asignarCaja(){
             printxy(13, y, new String(' ', resp.Length));
         } while (resp != "1" && resp != "2");
 
-        if (resp == "1") asignarTipo(resp);
-        else if (resp == "2") asignarTipo(resp);
-        else {
-            gotoxy(2, y+=2); error("Actualmente No hay clientes en la fila");
-            printxy(5, y+=2, "Presione Enter Para Continuar...");
-            Console.ReadKey();
-            menu();
+        if (resp == "1"){
+            if (cola_Normal.contador == 0){
+                gotoxy(2, y+=2); error("Actualmente No hay clientes en las filas");
+                printxy(5, y+=2, "Presione Enter Para Continuar...");
+                Console.ReadKey();
+                menu();
+            } else {
+                asignarTipo(resp);
+            }
+        } else if (resp == "2") {
+            if (cola_VIP.contador == 0){
+                gotoxy(2, y+=2); error("Actualmente No hay clientes en las filas");
+                printxy(5, y+=2, "Presione Enter Para Continuar...");
+                Console.ReadKey();
+                menu();
+            } else {
+                asignarTipo(resp);
+            }
         }
     }
 }
@@ -283,8 +294,7 @@ public static void asignarTipo(string tipo){
         printxy(0, y+4, new String(' ', 25));
         printxy(0, y+5, new String(' ', 25));
         (cliente, numAsignado) = cola_Normal.eliminarFrente();
-        asignado_caja_Normal.agregarAlFinal(cliente, numAsignado);
-        asignado_caja_Normal.primero.caja=caja;
+        asignado_caja_Normal.agregarAlFinalCaja(cliente, numAsignado, caja);
 
     } else {
         gotoxy(10,y); titulo("Asignar A Caja VIP");
@@ -314,8 +324,7 @@ public static void asignarTipo(string tipo){
         printxy(0, y+4, new String(' ', 25));
         printxy(0, y+5, new String(' ', 25));
         (cliente, numAsignado) = cola_VIP.eliminarFrente();
-        asignado_caja_VIP.agregarAlFinal(cliente, numAsignado);
-        asignado_caja_VIP.primero.caja=caja;
+        asignado_caja_VIP.agregarAlFinalCaja(cliente, numAsignado, caja);
         }
 
     printxy(0, y+=2, $"Cliente Asignado a La Caja {caja}");
@@ -370,7 +379,7 @@ public static void liberarTipo(string tipo){
     if(tipo == "1"){
         gotoxy(10,y); titulo("Liberar Caja Normal");
         printxy(0, y+=4, "Cajas Ocupadas:");
-        ocupadas = cajas_Normales.enlistarOcupadas(0, y, asignado_caja_Normal);
+        ocupadas = asignado_caja_Normal.contador;
 
         if (ocupadas == 0){
             gotoxy(2, y+=2); error("Actualmente No hay cajas Ocupadas");
@@ -378,6 +387,8 @@ public static void liberarTipo(string tipo){
             Console.ReadKey();
             menu();
         }
+
+        asignado_caja_Normal.cajas(0, y);
 
         printxy(0, y-=2, $"Seleccione Caja: ");
         do{
@@ -389,12 +400,14 @@ public static void liberarTipo(string tipo){
             if(!asignado_caja_Normal.cajaOcupada(caja)) repetir = true;
             if (caja > cajas_Normales.contador || caja <= 0 ) repetir = true;
         } while (repetir);
+        
         printxy(17, y, $"{caja}");
         printxy(0, y+2, new String(' ', 25));
         printxy(0, y+3, new String(' ', 25));
         printxy(0, y+4, new String(' ', 25));
         printxy(0, y+5, new String(' ', 25));
 
+y+=2;
         do{
             printxy(0, y, $"¿Liberar caja {caja}? s/n:");
             gotoxy(28, y);
@@ -405,13 +418,22 @@ public static void liberarTipo(string tipo){
         if (resp == "S"){
             asignado_caja_Normal.eliminarPorValor(caja);
             
-            printxy(0, y+=2, $"Caja {caja} Eliminada");
+            printxy(0, y+=2, $"Caja {caja} Liberada");
         }
 
     } else if (tipo=="2"){
         gotoxy(10,y); titulo("Liberar A Caja VIP");
         printxy(0, y+=4, "Cajas Ocupadas:");
-        ocupadas = cajas_VIP.enlistarOcupadas(0, y, asignado_caja_VIP);
+        ocupadas = asignado_caja_VIP.contador;
+
+        if (ocupadas == 0){
+            gotoxy(2, y+=2); error("Actualmente No hay cajas Ocupadas");
+            printxy(5, y+=2, "Presione Enter Para Continuar...");
+            Console.ReadKey();
+            menu();
+        }
+
+        asignado_caja_VIP.cajas(0, y);
 
         printxy(0, y-=2, $"Seleccione Caja: ");
         do{
@@ -472,7 +494,7 @@ public static void verInformacion() {
         printxy(5, y += 2, "Opción: ");
         
         gotoxy(13, y);
-        opcion = Console.ReadLine()?.Trim();
+        opcion = Console.ReadLine();
         
         switch (opcion) {
             case "1":
@@ -515,11 +537,11 @@ public static void mostrarCajas(){
     Console.Clear();
     titulo("Información de Cajas");
     printxy(0,2, "Cajas Normales");
-    asignado_caja_Normal.enlistarCajas(0,2);
+    asignado_caja_Normal.enlistarCajasCliente(0,2);
 
 
-    printxy(0, 7, "Cajas VIP");
-    asignado_caja_VIP.enlistarCajas(0, 7);
+    printxy(0, 10, "Cajas VIP");
+    asignado_caja_VIP.enlistarCajasCliente(0, 10);
 
     printxy(5, y+=20, "Presiona enter para continuar...");
     Console.ReadKey();

@@ -23,6 +23,20 @@ public class cola{ // clase para enlazar nodos
         contador++;
     }
 
+    public void agregarAlFinalCaja(object valor1, object valor2, object caja){ // Agregar al Final
+        Nodo nuevoNodo = new Nodo (valor1, valor2, caja);
+        if (primero == null){
+            primero = nuevoNodo;
+        } else {
+            Nodo actual = primero;
+            while (actual.Siguiente != null){
+                actual = actual.Siguiente;
+            }
+            actual.Siguiente = nuevoNodo;
+        }
+        contador++;
+    }
+
     public (object,  object) eliminarFrente(){ // Eliminar El Primero de la cola
         if (primero == null) return (null, null);
         Nodo auxiliar = primero;
@@ -64,7 +78,8 @@ public class cola{ // clase para enlazar nodos
         printxy(x, y+=2, $"Numero Asignado: {primero.Valor2}");
     }
 
-    public bool buscarPorValor(object valor){ // Buscar Por Valor
+// Buscar Por Valor
+    public bool buscarPorValor(object valor){
         Nodo actual = primero;
         while (actual != null){
             if (actual.Valor1.Equals(valor)){
@@ -87,7 +102,18 @@ int disponibles = 0;
     return disponibles;
 }
 
-public int enlistarCajas(int x, int y){
+public int cajas(int x, int y){
+Nodo actual = primero;
+int disponibles = 0;
+    while (actual != null){
+            printxy(x, y+=1, $"{actual.caja})");
+            disponibles++;
+            actual = actual.Siguiente;
+        }
+    return disponibles;
+}
+
+public int enlistarCajasCliente(int x, int y){
 Nodo actual = primero;
 int disponibles = 0;
 
@@ -104,8 +130,8 @@ int disponibles = 0;
     return disponibles;
 }
 
-
-public int enlistarDisponibles(int x, int y, cola cola){ // Muestra la ciudad y muestra los contenedores especificando sus posiciones y su codigo y empresa
+ // Muestra la ciudad y muestra los contenedores especificando sus posiciones y su codigo y empresa
+public int enlistarDisponibles(int x, int y, cola cola){
 Nodo actual = primero;
 Nodo actual_cola = cola.primero;
 int disponibles = 0;
@@ -113,6 +139,7 @@ bool mostrar=true;
 
     while (actual != null){
         mostrar=true;
+        actual_cola = cola.primero;
         while (actual_cola != null){
             if (actual_cola.caja.Equals(actual.Valor2)) mostrar = false;
             actual_cola = actual_cola.Siguiente;
@@ -129,20 +156,19 @@ bool mostrar=true;
 
 public int enlistarOcupadas(int x, int y, cola cola){
 Nodo actual = primero;
-Nodo actual_cola = cola.primero;
+Nodo actual_cola;
 int disponibles = 0;
-bool mostrar=true;
+bool aumentar=true;
 
     while (actual != null){
-        mostrar=true;
+        aumentar=true;
+        actual_cola = cola.primero;
         while (actual_cola != null){
-            if (actual_cola.caja.Equals(actual.Valor2)) mostrar = false;
+            if (actual_cola.caja.Equals(actual.Valor2)) aumentar = false;
             actual_cola = actual_cola.Siguiente;
         }
-        if (!mostrar){
-            printxy(x, y+=1, $"{actual.Valor2})");
-            disponibles++;
-        }
+        if (!aumentar) disponibles++;
+
         actual = actual.Siguiente;
     }
     return disponibles;
